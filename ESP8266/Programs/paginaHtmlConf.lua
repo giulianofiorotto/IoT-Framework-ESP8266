@@ -1,0 +1,33 @@
+file.remove("configPage.lua")
+file.open("configPage.lua","w")
+file.writeline([[
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>ESP8266-12 conf</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+          <link rel="stylesheet" href="http://192.168.0.3/ESP8266/moduleSetup.css">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-6 col-md-4 col-md-offset-4">
+                      <h1 class="text-center login-title">Inserisci le credenziali per accedere alla tua rete WiFi</h1>
+                      <div class="account-wall">
+                          <label class="text-center login-title">]]..wifi.sta.getip()..[[</label>
+                          <form class="form-signin" method="GET" action="">
+                          <input type="text" class="form-control" placeholder="Nome modulo" name="nome" required>
+                          <input type="text" class="form-control" placeholder="SSID" name="SSID" required autofocus>
+                          <input type="password" class="form-control" placeholder="Password" name="password" required>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">Set</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </body>
+</html>
+]])
+file.close()

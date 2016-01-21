@@ -1,0 +1,6 @@
+file.open("config.lua", "a+")
+file.writeline('ssid')
+file.writeline('pass')
+file.writeline('Camera Giuliano')
+file.writeline('0mxolxsuLzJqB69m216Z')
+file.close()
