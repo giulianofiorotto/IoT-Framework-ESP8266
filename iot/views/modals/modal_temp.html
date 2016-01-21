@@ -1,0 +1,17 @@
+<div class="inmodal" >
+    <div class="modal-header">
+        <i class="fa fa-sun-o modal-icon"></i>
+        <h4 class="modal-title">Temperatures</h4>
+    </div>
+    <div class="modal-body">
+        <dd ng-repeat="data in temps" >
+			<div class="col-xs-12" >
+				<p class="pull-left">{{ data.nome }}</p>
+				<a class="btn btn-xs btn-primary pull-right" ng-click="select(data.id_pin_temperatura)" >Select</a>
+			</div>
+		</dd>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="close()">Close</button>
+    </div>
+</div>

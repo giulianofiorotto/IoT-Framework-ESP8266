@@ -1,0 +1,184 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+			<div class="wrapper wrapper-content">
+			<div class="row" >
+				<div class="col-lg-12" style="margin-bottom:20px">
+					<div class="col-lg-3">
+						<div class="ibox-content col-xs-12 text-center" ng-controller="checklight">
+							<dd ng-if="flag1 == false">
+								<div  ng-click="open1()">
+									<i class="fa fa-plus fa-5x" ></i>
+									<h4 >Click to select a favourite</h4>
+								</div>
+							</dd>
+							<dd ng-if="flag1 == true" >
+								<div class="col-lg-12" style="padding-right:0px;">
+									<i class="fa fa-wrench fa-2x pull-right" style="opacity: 0.8;" ng-click="open1()"></i>
+								</div>
+								<br>
+								<dl ng-if="favLight[0].stato == 1" style="margin-bottom:0px;">
+									<i class="fa fa-lightbulb-o fa-5x text-primary" ng-click="stateTrue($index,data.pin_hw, data.ip)"></i>
+								</dl>
+								<dl ng-if="favLight[0].stato == 0"  style="margin-bottom:0px;" >
+									<i class="fa fa-lightbulb-o fa-5x text-danger" ng-click="stateFalse($index,data.pin_hw, data.ip)"></i>
+								</dl>
+								<h2>{{ favLight[0].nome }}</h2>
+							</dd>
+						</div>
+					</div>
+					
+					<div class="col-lg-3">	
+						<div class="ibox-content col-xs-12 text-center" ng-controller="checkDoor">
+							<dd ng-if="flag2 == false">
+								<div ng-click="active()">
+									<i class="fa fa-plus fa-5x" ></i>
+									<h4 >Click to add alarm</h4>
+								</div>
+							</dd>
+							<dd ng-if="flag2 == true">
+								<div class="col-lg-12" style="padding-right:0px;">
+									<i class="fa fa-wrench fa-2x pull-right" style="opacity:0.0;"></i>
+								</div>
+								<br>
+								<dl ng-if="doorState == true" style="margin-bottom:0px;">
+									<i class="fa fa-home fa-5x text-primary" ng-click="stateTrue()"></i>
+								</dl>
+								<dl ng-if="doorState == false"  style="margin-bottom:0px;">
+									<i class="fa fa-home fa-5x text-danger" ng-click="stateFalse()"></i>
+								</dl>
+								<h2>Alarm</h2>
+							</dd>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="ibox-content col-xs-12 text-center" ng-controller="checkPlug">
+							<dd ng-if="flag3 == false">
+								<div ng-click="open3()">
+									<i class="fa fa-plus fa-5x" ></i>
+									<h4 >Click to select a favourite</h4>
+								</div>
+							</dd>
+							<dd ng-if="flag3 == true">
+								<div class="col-lg-12" style="padding-right:0px;">
+									<i class="fa fa-wrench fa-2x pull-right" style="opacity: 0.8;" ng-click="open3()"></i>
+								</div>
+								<br>
+								<dl ng-if="favPlug[0].stato == 1" style="margin-bottom:0px;">
+									<i class="fa fa-plug fa-5x text-primary" ng-click="stateTrue($index,data.pin_hw, data.ip)"></i>
+								</dl>
+								<dl ng-if="favPlug[0].stato == 0"  style="margin-bottom:0px;">
+									<i class="fa fa-plug fa-5x text-danger" ng-click="stateFalse($index,data.pin_hw, data.ip)"></i>
+								</dl>
+								<h2>{{ favPlug[0].nome }}</h2>
+							</dd>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="ibox-content col-xs-12 text-center" ng-controller="checkTemp">
+							<div class="col-lg-12" style="padding-right:0px;">
+								<i class="fa fa-wrench fa-2x pull-right" style="opacity: 0.8;" ng-click="open4()"></i>
+							</div>
+							<br>
+							<dd ng-if="flag4 == false">
+								<div ng-click="open4()">
+									<i class="fa fa-plus fa-5x" ></i>
+									<h4 >Click to select a favourite</h4>
+								</div>
+							</dd>
+							<dd ng-if="flag4 == true">
+								<h1 style="margin-bottom:25px; font-size: 40px;">{{ favTemp[0].temperatura }}° <small> {{ favTemp[0].umidita }}%</small></h1>
+								<h2>{{ favTemp[0].nome }}</h2>
+								
+							</dd>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="col-lg-12"></div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>Favourite Module</h5>
+
+						</div>
+						<div class="ibox-content">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="flot-chart" ng-controller="dashboardFlotOne">
+										<div flot class="flot-chart-content" dataset="flotData" options="flotOptions"></div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+			<div class="col-lg-6">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>Logs</h5>
+						<div ibox-tools></div>
+					</div>
+
+
+					<div class="ibox-content">
+						<div class="feed-activity-list"  ng-controller="generalLog">
+							<dd ng-repeat="data in logs">
+								<div class="feed-element" style="margin-top:15px">
+									<div>
+										<img src=" {{ data.image_url }} " class="img-circle">
+										<small class="pull-right text-navy">{{ data.date }}</small>
+										<strong>{{ data.name + " " + data.surname }}</strong>
+										<div>{{ data.text }}</div>
+									</div>
+								</div>
+							</dd>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>Status</h5>
+						<div ibox-tools></div>
+					</div>
+
+					<div class="ibox-content" ng-controller="ctrlStatus">						
+			            <!--<dd ng-if="state == 'active'" ><h5>Database Status: <strong>Active</strong></h5></dd>
+			            <dd ng-if="state == 'unactive'" ><h5>Database Status: <strong>Unactive</strong></h5></dd>-->
+			            <dd><h5>Database Status: <strong>Active</strong></h5></dd>
+						<h5>Number of active modules: {{ number }} </h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- Footer -->
+    <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->

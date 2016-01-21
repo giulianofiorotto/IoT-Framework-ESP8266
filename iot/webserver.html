@@ -1,0 +1,34 @@
+gpio.mode(0, gpio.OUTPUT)
+gpio.mode(5, gpio.OUTPUT)
+function inverti(stato)
+if stato == 1 then
+return 0
+else
+return 1
+end
+end
+sv=net.createServer(net.TCP, 10)
+sv:listen(80,function(c)
+						  c:on("receive", function(c, pl) 
+						    i, j = string.find(pl, "=")  
+						    k, f = string.find(pl, "HTTP")        
+						    pin = tonumber(string.sub(pl, i+1, k-1))
+if pin == 0 then
+						        gpio.write(0, inverti(gpio.read(0)))
+						    end
+if pin == 5 then
+						        gpio.write(5, inverti(gpio.read(5)))
+						    end
+c:close() 
+						  end)
+						  c:send("<p>ESP8266 ESP-12</p>")
+						  c:send("HTTP/1.1 200 OK\r\n") 
+						  c:send("Server: ESP8266 Lua\r\n") 
+						  c:send("Access-Control-Allow-Origin: http://serverIP\r\n") 
+						  c:send("Access-Control-Allow-Methods: GET\r\n") 
+						  c:send("Keep-Alive: *\r\n") 
+						  c:send("Connection: Keep-Alive\r\n")  
+						  c:send("Accept: */*\r\n") 
+						  c:send("User-Agent: Mozilla/4.0\r\n") 
+						  c:send("\r\n") 
+						end)

@@ -1,0 +1,236 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+        	<div ng-controller="settingModule">
+				<div class="row wrapper border-bottom white-bg page-heading" >
+					<div class="col-lg-10">
+						<h2>Module Configuration</h2>
+						<ol class="breadcrumb">
+							<li>
+								<a href="/iot/#/home">Home</a>
+							</li>
+							<li>
+								<a href="/iot/#/modules">Modules</a>
+							</li>
+							<li class="active" >
+								<a href="/iot/#/modules/details/{{ modId }}">{{ name }}</a>
+							</li>
+						</ol>
+					</div>
+					<div class="col-lg-2">
+
+					</div>
+				</div>
+				<div class="wrapper wrapper-content animated fadeInRight" >
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="ibox float-e-margins">
+								<div class="ibox-content">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="col-lg-5" style="margin-bottom:20px;">
+												<h4>Name</h4>
+			                                    <div class="input-group">
+			                                        <input type="text" ng-model="name" class="form-control" placeholder="{{  }}">
+			                                        <span class="input-group-btn"> 
+		                                                <button type="button" class="btn btn-primary" ng-click="changeName()">Save</button> 
+		                                            </span> 
+			                                    </div>
+			                                </div>
+
+			                                <div class="col-lg-12">
+			                                	<h4 class="pull-left">Pin</h4>
+										        <a class="btn btn-white btn-xs pull-right" ng-click="addRow()">Add</a>
+
+			                                	<table class="table">
+			                                		<tr ng-repeat="data in lightss">
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="{{ data.nome }}">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled>Type</option>
+														        <option selected>Light</option>
+														        <option>Plug</option>
+														        <option>Alarm</option>
+														        <option>Temperature</option>
+														        <option>Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled >Pin</option>
+							                                    <option value="{{ pin_hw }}" selected>{{ data.pin_hw }}</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+			                                		<tr ng-repeat="data in plugs">
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="{{ data.nome }}">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled>Type</option>
+														        <option >Light</option>
+														        <option selected>Plug</option>
+														        <option>Alarm</option>
+														        <option>Temperature</option>
+														        <option>Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled >Pin</option>
+							                                    <option value="{{ pin_hw }}" selected>{{ data.pin_hw }}</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+			                                		<tr ng-repeat="data in alarms">
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="{{ data.nome }}">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled>Type</option>
+														        <option >Light</option>
+														        <option>Plug</option>
+														        <option selected>Alarm</option>
+														        <option>Temperature</option>
+														        <option >Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled >Pin</option>
+							                                    <option value="{{ pin_hw }}" selected>{{ data.pin_hw }}</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+			                                		<tr ng-repeat="data in temperatures">
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="{{ data.nome }}">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled>Type</option>
+														        <option >Light</option>
+														        <option>Plug</option>
+														        <option>Alarm</option>
+														        <option selected>Temperature</option>
+														        <option>Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled >Pin</option>
+							                                    <option value="{{ pin_hw }}" selected>{{ data.pin_hw }}</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+			                                		<tr ng-repeat="data in customs">
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="{{ data.nome }}">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled>Type</option>
+														        <option >Light</option>
+														        <option>Plug</option>
+														        <option>Alarm</option>
+														        <option>Temperature</option>
+														        <option selected>Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled >Pin</option>
+							                                    <option value="{{ pin_hw }}" selected>{{ data.pin_hw }}</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+
+			                                		<tr>
+			                                			<td>
+			                                				<input type="text" class="form-control" placeholder="Name">
+														</td>
+			                                			<td>
+			                                				<select class="form-control" >
+						                                    	<option disabled selected>Type</option>
+														        <option >Light</option>
+														        <option>Plug</option>
+														        <option>Alarm</option>
+														        <option>Temperature</option>
+														        <option >Custom</option>
+														    </select>
+			                                			</td>
+			                                			<td>
+															<select class="form-control" >
+						                                    	<option disabled selected>Pin</option>
+					                                    		<option>0</option>
+					                                    		<option>1</option>
+					                                    		<option>2</option>
+					                                    		<option>3</option>
+					                                    		<option>4</option>
+					                                    		<option>5</option>
+																<option>6</option>
+					                                    		<option>7</option>
+					                                    		<option>8</option>
+					                                    		<option>9</option>
+					                                    		<option>10</option>
+					                                    		<option>11</option>
+					                                    		<option>12</option>
+																<option>13</option>
+																<option>14</option>
+																<option>15</option>
+																<option>16</option>
+														    </select>
+
+			                                			</td>
+
+			                                		</tr>
+
+			                                	</table>
+		                                        <button type="button" class="btn btn-primary" ng-click="changeName()">Save</button> 
+
+											</div>
+		                                </div>
+
+		                            </div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<!-- Footer -->
+    <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->

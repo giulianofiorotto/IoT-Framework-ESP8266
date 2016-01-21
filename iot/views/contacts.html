@@ -1,0 +1,104 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+			<div class="row wrapper border-bottom white-bg page-heading">
+				<div class="col-lg-9">
+					<h2>Contacts</h2>
+					<ol class="breadcrumb">
+						<li>
+							<a ui-sref="home">Home</a>
+						</li>
+						<li class="active">
+							<strong>Contacts</strong>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="wrapper wrapper-content animated fadeInRight">
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="contact-box">
+							<a ui-sref="profile">
+								<div class="col-sm-4">
+									<div class="text-center">
+										<img alt="image" class="img-circle m-t-xs img-responsive" src="img/profile_small.jpg">
+
+										<div class="m-t-xs font-bold">MySQL & Web Developer</div>
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<h3><strong>Mattia Gosetto</strong></h3>
+
+									<p>mattia.gosetto@gmail.com</p>
+									<address>
+										<strong></strong><br>
+									</address>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="contact-box">
+							<a ui-sref="profile">
+								<div class="col-sm-4">
+									<div class="text-center">
+										<img alt="image" class="img-circle m-t-xs img-responsive" src="img/profile_small.jpg">
+
+										<div class="m-t-xs font-bold">Esp & MySQL Developer</div>
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<h3><strong>Giuliano Fiorotto</strong></h3>
+									<p>mr.giuliano@gmail.com</p>
+									<address>
+										<strong></strong><br>
+									</address>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="contact-box">
+							<a ui-sref="profile">
+								<div class="col-sm-4">
+									<div class="text-center">
+										<img alt="image" class="img-circle m-t-xs img-responsive" src="img/profile_small.jpg">
+										<div class="m-t-xs font-bold">Android Developer</div>
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<h3><strong>Fabio Zaramella</strong></h3>
+									<p>ffabio.96.x@gmail.com</p>
+									<address>
+										<strong></strong><br>
+									</address>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+				<!-- Footer -->
+    <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->

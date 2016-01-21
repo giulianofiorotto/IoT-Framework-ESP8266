@@ -1,0 +1,76 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+			<div class="row wrapper border-bottom white-bg page-heading">
+				<div class="col-lg-10">
+					<h2>Guide</h2>
+					<ol class="breadcrumb">
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="active">
+							<strong>Guide</strong>
+						</li>
+					</ol>
+				</div>
+				<div class="col-lg-2">
+
+				</div>
+			</div>
+			<div class="wrapper wrapper-content animated fadeInRight" ng-controller="codeEditorCtrl">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="ibox ">
+							<div class="ibox-title">
+								<h5>Code Editor - Basic example</h5>
+							</div>
+							<div class="ibox-content">
+
+								<p  class="m-b-lg">
+									<strong>CodeMirror</strong> is a versatile text editor implemented in JavaScript for the browser. It is specialized for editing code, and comes with a number of language modes and addons that implement more advanced editing functionality.
+								</p>
+
+								<ui-codemirror ui-codemirror-opts="editorOptions">
+			// Code goes here
+
+			// For demo purpose - animation css script
+			function animationHover(element, animation){
+				element = $(element);
+				element.hover(
+						function() {
+							element.addClass('animated ' + animation);
+						},
+						function(){
+							//wait for animation to finish before removing classes
+							window.setTimeout( function(){
+								element.removeClass('animated ' + animation);
+							}, 2000);
+						});
+									</ui-codemirror>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			        <!-- Footer -->
+        <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->

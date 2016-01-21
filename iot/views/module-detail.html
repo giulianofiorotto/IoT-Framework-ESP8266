@@ -1,0 +1,306 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+				<div class="row wrapper border-bottom white-bg page-heading" ng-controller="detailsCtrl">
+					<div class="col-lg-10">
+						<h2>Module Details</h2>
+						<ol class="breadcrumb">
+							<li>
+								<a href="/iot/#/home">Home</a>
+							</li>
+							<li>
+								<a href="/iot/#/modules">Modules</a>
+							</li>
+							<li class="active" >
+								{{ name }}
+							</li>
+						</ol>
+					</div>
+					<div class="col-lg-2">
+
+					</div>
+				</div>
+				<div class="wrapper wrapper-content animated fadeInRight" >
+					<div class="row">
+						<div class="col-lg-12">
+							
+							<div class="col-lg-6">
+								<div class="ibox float-e-margins">
+
+									<div class="ibox-content">
+										<div class="row">
+										    <div class="col-lg-12" ng-controller="detailsCtrl">
+										        <div class="m-b-md"  >
+										            <a href="/iot/#/module/config/{{ id }}" class="btn btn-white btn-xs pull-right">Edit</a>
+
+										            <h2>{{ name }}</h2>
+										        </div>
+										        <dl class="dl-horizontal">
+										            <dt>Status:</dt>
+										            <dd ng-if="state == 'active'" ><span class="label label-primary">Active</span></dd>
+										            <dd ng-if="state == 'unactive'" ><span class="label label-danger">Unactive</span></dd>
+										        </dl>
+										    </div>
+										</div>
+										<div class="row">
+										    <div class="col-lg-12" ng-controller="detailsCtrl">
+										        <dl class="dl-horizontal">
+										            <!--<dt>Owner:</dt>
+										            <dd>{{ user }}</dd>-->
+										            <dt>Battery:</dt>
+										            <dd>80%</dd>
+										            <dt>Signal:</dt>
+										            <dd>95%</dd>
+										            <dt>IP:</dt>
+										            <dd>{{ IP }}</dd>
+										            <!--<dt>Last Updated:</dt>
+										            <dd>16.08.2014 12:15:57</dd>-->
+										        </dl>
+										    </div>
+										</div>
+										<div class="row m-t-sm">
+											<div class="col-lg-12">
+												<div class="panel blank-panel ui-tab">
+
+												<tabset>
+												    <tab heading="Logs" active="tab.active" class="dsads">
+												        <div class="feed-activity-list"  ng-controller="moduleLog">
+															<dd ng-repeat="data in logs">
+																<div class="feed-element" style="margin-top:15px">
+																	<div>
+												    					<img alt="image" class="img-circle" src="{{data.image_url}}"/>
+																		<small class="pull-right text-navy">{{data.date}}</small>
+																		<strong>{{data.name + " " + data.surname}}</strong>
+																		<div>{{data.text}}</div>
+																	</div>
+																</div>
+															</dd>
+														</div>
+												    </tab>
+												    
+
+												</tabset>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6" >
+								
+								<div class="ibox float-e-margins">
+
+									<div class="ibox-content" >
+										<div class="panel blank-panel ui-tab">
+
+								            <div class="panel-heading">
+								                <div class="panel-title m-b-md"><h4>Objects</h4></div>
+								            </div>
+
+								            <div class="panel-body">
+
+								                <tabset >
+								                    <tab>
+								                        <tab-heading>
+								                            <i class="fa fa-lightbulb-o"></i>
+								                        </tab-heading>
+								                        <dd ng-controller="retrieveLight">
+									                        <div class="col-lg-6"  ng-repeat="data in lightss">
+																<div class="ibox-content col-xs-12 text-center" style="border: 1px solid #e7eaec;">
+																	<dl ng-if="data.stato == 1" style="margin-bottom:0px;">
+																		<i class="fa fa-lightbulb-o fa-3x text-primary" ng-click="stateTrue( $index, data.pin_hw, data.ip, data.nome, data.id_pin_luce )"></i>
+																	</dl>
+																	<dl ng-if="data.stato == 0"  style="margin-bottom:0px;" >
+																		<i class="fa fa-lightbulb-o fa-3x text-danger" ng-click="stateFalse( $index, data.pin_hw, data.ip, data.nome, data.id_pin_luce  )"></i>
+																	</dl>
+																	<h4>{{ data.nome }}</h5>
+																</div>
+															</div>
+														</dd>
+														<!--
+								                        <table class="table table-bordered table-hover" ng-controller="retrieveLight">
+
+
+															<thead>
+																<tr>
+																	<th>Pin</th>
+																	<th>State</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="data in lightss">
+																	<td>{{ data.nome }}</td>
+																	<td>
+																		<dd ng-if="data.stato == 1">
+																			<div class="switch">
+																				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" checked />
+																				<label for="cmn-toggle-1"></label>
+																			</div>
+																		</dd>
+																		<dd ng-if="data.stato == 0">
+																			<div class="switch">
+																				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" />
+																				<label for="cmn-toggle-1"></label>
+																			</div>
+																		</dd>
+
+																	</td>
+																	
+																</tr>
+															</tbody>
+														</table>-->
+								                    </tab>
+								                    <tab>
+								                        <tab-heading>
+								                            <i class="fa fa-plug"></i>
+								                        </tab-heading>
+								                        <dd ng-controller="retrievePlug">
+									                        <div class="col-lg-6"  ng-repeat="data in plugs">
+																<div class="ibox-content col-xs-12 text-center" style="border: 1px solid #e7eaec;">
+																	<dl ng-if="data.stato == 1" style="margin-bottom:0px;">
+																		<i class="fa fa-plug fa-3x text-primary" ng-click="stateTrue($index,data.pin_hw, data.ip, data.nome, data.id_pin_presa)"></i>
+																	</dl>
+																	<dl ng-if="data.stato == 0"  style="margin-bottom:0px;" >
+																		<i class="fa fa-plug fa-3x text-danger" ng-click="stateFalse($index,data.pin_hw, data.ip, data.nome , data.id_pin_presa) "></i>
+																	</dl>
+																	<h4>{{ data.nome }}</h5>
+																</div>
+															</div>
+														</dd>
+								                        <!--
+								                        <table class="table table-bordered table-hover" ng-controller="retrievePlug">
+															<thead>
+																<tr>
+																	<th>Pin</th>
+																	<th>State</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="data in plugs">
+																	<td>{{ data.nome }}</td>
+																	<td>
+																		<dd ng-if="data.stato == 1">
+																			<div class="switch">
+																				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" checked />
+																				<label for="cmn-toggle-1"></label>
+																			</div>
+																		</dd>
+																		<dd ng-if="data.stato == 0">
+																			<div class="switch">
+																				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" />
+																				<label for="cmn-toggle-1"></label>
+																			</div>
+																		</dd>
+																	</td>
+																</tr>
+															</tbody>
+														</table>-->
+
+
+								                    </tab>
+								                    <tab>
+								                        <tab-heading>
+								                            <i class="fa fa-sun-o"></i>
+								                        </tab-heading>
+								                        <table class="table table-bordered table-hover" ng-controller="retrieveTemp">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Temperature</th>
+																	<th>Humidity</th>
+																	<th>Date Time</th>
+																</tr>
+															</thead>
+															<tbody>
+																<!--
+																<tr ng-repeat="data in temperatures">
+																	<td>{{ data.nome }}</td>
+																	<td>{{ data.temperatura }}</td>
+																	<td>{{ data.umidita }}</td>
+																</tr>-->
+																<tr>
+																	<td rowspan="5" style="vertical-align: inherit;">Temperatura Stanza</td>
+																	<td>19°</td>
+																	<td>48%</td>
+																	<td>2015/06/08 04:00</td>
+																</tr>	
+																<tr>
+																	<td>22°</td>
+																	<td>52%</td>
+																	<td>2015/06/08 07:00</td>
+
+																</tr>	
+																<tr>
+																	<td>25°</td>
+																	<td>56%</td>
+																	<td>2015/06/08 10:00</td>
+																</tr>	
+																<tr>
+																	<td>26°</td>
+																	<td>47%</td>
+																	<td>2015/06/08 13:00</td>
+																</tr>	
+																<tr>
+																	<td>24°</td>
+																	<td>40%</td>
+																	<td>2015/06/08 16:00</td>
+																</tr>	
+
+
+															</tbody>
+														</table>
+								                    </tab>
+								                    <tab>
+								                        <tab-heading>
+								                            <i class="fa fa-cog"></i>
+								                        </tab-heading>
+								                        <table class="table table-bordered table-hover" ng-controller="retrieveCustom">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Content</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="data in customs">
+																	<td>{{ data.nome }}</td>
+																	<td>{{ data.contenuto }}</td>	
+																</tr>
+															</tbody>
+														</table>
+								                    </tab>
+								                </tabset>
+
+								            </div>
+
+								      </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</dd>
+
+	<!-- Footer -->
+    <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->

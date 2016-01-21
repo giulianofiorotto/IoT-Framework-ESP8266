@@ -1,0 +1,116 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Profile</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/iot/#/home">Home</a>
+                        </li>
+                        <li class="active">
+                            <strong>Profile</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content" ng-controller="profileSetting">
+                <div class="row animated fadeInRight">
+                    <div class="col-md-4">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Profile Detail</h5>
+                            </div>
+                            <div >
+                                <div class="ibox-content no-padding border-left-right">
+                                    <img alt="image" class="img-responsive" src="img/profile_big.jpg">
+                                </div>
+                                <div class="ibox-content profile-content">
+                                    <h4><strong>{{ Name + " " + Surname }}</strong></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8" >
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Settings</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Change Name</h4>
+                                        <div class="input-group">
+                                            <input type="text" ng-model="usrName" class="form-control" placeholder="{{ name }}"> 
+                                            <span class="input-group-btn"> 
+                                                <button type="button" class="btn btn-primary" ng-click="changeName()">Save</button> 
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Change Surname</h4>
+                                        <div class="input-group">
+                                            <input type="text" ng-model="usrSurname" class="form-control" placeholder="{{ surname }}"> 
+                                            <span class="input-group-btn"> 
+                                                <button type="button" class="btn btn-primary" ng-click="changeSurname()">Save</button> 
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="">
+                                        <h4>Change Email</h4>
+                                        <div class="input-group">
+                                            <input type="email" ng-model="Email" class="form-control" placeholder="{{ email }}"> 
+                                            <span class="input-group-btn"> 
+                                                <button type="button" class="btn btn-primary" ng-click="changeEmail()">Save</button> 
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <h4>Change Password</h4>
+                                            <input type="password" ng-model="oldPsw" style="margin-bottom:10px;" placeholder="Old Password" class="form-control">
+                                            <br>
+                                            <input type="password" ng-model = "newPsw" style="margin-bottom:10px;" placeholder="New Password" class="form-control">
+                                            <p class="text-primary" ng-hide="pswChanged">Password changed</p>
+                                            <p class="text-danger" ng-hide="field">Field</p>
+											<p class="text-danger" ng-hide="wrongPassword">Wrong Password</p>
+											<button type="button" class="btn btn-primary" ng-click="changePassword()" >Save</button> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Change Image</h4>
+                                        <input type="file" name="file" id="file" /><br>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+									
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <!-- Footer -->
+    <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+    <!-- Right Sidebar -->
+    <div ng-include="'views/common/right_sidebar.html'"></div>
+
+</div>
+<!-- End wrapper-->
